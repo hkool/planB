@@ -1,0 +1,40 @@
+.disabled
+{
+    pointer-events: none;
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+}
+.rounded-circle
+{
+    width:100px;
+    height:100px;
+}
+.user
+{
+    float:right;
+    width:200px;
+    padding-top: 20px;
+    color:white;
+    text-align: right;
+}
+.container>form
+{
+    margin:20px;
+}
+.table2{
+
+    background-color: unset;
+    border-width: 0px;
+    border-color:#ffffff;
+}
+
+
+.table2 td, .table2 th {
+
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 0px solid ;
+
+}

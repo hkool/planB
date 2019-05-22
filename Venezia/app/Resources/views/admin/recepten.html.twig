@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h3 class="display-3">Recepten</h3>
+ <tr class="container-fluid">
+    <table class="table table-responsive-md table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th><h5 class="display-5">naam</h5></th>
+            <th><h5 class="display-5">bereidingswijze</h5></th>
+        </tr>
+    </thead>
+        {% for r in recepten %}
+           <tr>
+               <td>
+                   <img class="rounded-circle flex-sm-column-reverse" src="{{ asset("img/#{r.naam}.jpg") }}" />
+               </td>
+                <td>
+                    <a href="{{ path('adminUpdateRecept',{'id':r.id}) }}">{{ r.naam }}</a>
+                </td>
+                <td >
+                    {{ r.bereidingswijze }}
+                    <p><b>( {{ r.fruit.naam }} )</b></p>
+                </td>
+               <td>
+                   <a href="{{ path('adminDeleteRecept',{'id':r.id}) }}"> <span class="glyphicon glyphicon-trash"></span></a>
+               </td>
+
+            </tr>
+        {%  endfor %}
+    </table>
+
+{% endblock %}

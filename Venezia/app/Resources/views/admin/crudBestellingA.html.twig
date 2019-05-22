@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+    <h3 class="display-3">Bestelling</h3>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_start(form) }}
+                {{ form_row(form.afhaaldatum) }}
+                {{ form_row(form.klant) }}
+                {{ form_row(form.telefoon) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,64 @@
+
+    <nav class="container-fluid navbar navbar-expand-sm bg-dark navbar-dark ">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseVenezia">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="collapse navbar-collapse " id="collapseVenezia">
+            <ul class="navbar-nav">
+                <li class="nav-item  ">
+                    <a class="nav-link {% if link == 'home' %}active{% endif %}" href="{{ path('adminDefault') }}/">home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if link == 'fruit' %}active{% endif %}" href="#" id="navbarfruit" data-toggle="dropdown">fruit</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('adminListFruit') }}">overzicht</a>
+                            <a class="dropdown-item" href="{{ path('adminAddFruit') }}">fruit toevoegen</a>
+                        </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if link == 'recept' %}active{% endif %}" href="#" id="navbarrecept" data-toggle="dropdown">recepten</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('adminListRecepten') }}">overzicht</a>
+                            <a class="dropdown-item" href="{{ path('adminAddRecept') }}">recept toevoegen</a>
+                        </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if link == 'bestelling' %}active{% endif %}" href="#" id="navbarrecept" data-toggle="dropdown">bestellingen</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ path('adminListBestellingen') }}">overzicht</a>
+                        <a class="dropdown-item" href="{{ path('adminAddBestellingA') }}">bestelling toevoegen</a>
+                    </div>
+                </li>
+
+            </ul>
+            </div>
+        {% endif %}
+            {% if  is_granted('ROLE_IJSMAKER') %}
+
+        <div class="collapse navbar-collapse " id="collapseVenezia">
+            <ul class="navbar-nav">
+                <li class="nav-item  ">
+                    <a class="nav-link {% if link == 'home' %}active{% endif %}" href="{{ path('ijsmakerDefault') }}/">home</a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="user">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarrecept" data-toggle="dropdown">ingelogd als {{ app.user.username }}</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('logout') }}">uitloggen</a>
+                        </div>
+                    </li>
+
+
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+

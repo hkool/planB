@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+    {% for ijs in ijssoorten %}
+        <div class="row">
+            <div class="col-sm-4">
+               <h5 class="display-5 "> {{ ijs.naam }}</h5>
+            </div>
+            <div class="col-sm-4">
+                <h5 class="display-5">&euro; {{ ijs.prijsPerLiter }}</h5>
+            </div>
+            <div class="col-sm-4">
+                <img class="rounded-circle" src="{{ asset("img/#{ijs.naam}.jpg") }}" />
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

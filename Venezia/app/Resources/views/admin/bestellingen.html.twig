@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h3 class="display-3">Bestellingen</h3>
+ <tr class="container-fluid">
+    <table class="table table-responsive-md table-striped">
+    <thead>
+        <tr>
+            <th ><h5 class="display-5">bestelling</h5></th>
+            <th ><h5 class="display-5">afhaaldatum</h5></th>
+            <thcolspan="2"><h5 class="display-5">klant</h5></th>
+
+        </tr>
+    </thead>
+
+        {% for b in bestellingen %}
+           <tr>
+
+                <td ><b>
+                    <a href="{{ path('adminUpdateBestelling',{'id':b.id}) }}">{{ b.id }}</a></b>
+                </td>
+                <td ><b>
+                    {{ b.afhaaldatum|date('d-m-y') }}</b>
+                </td>
+               <td colspan="2" ><b>
+                   {{ b.klant }}</b>
+               </td>
+        </tr>
+            {% set count = 1 %}
+        {% for br in b.bestelregels %}
+            <tr>
+               <td></td><td></td>
+                <td>
+                    {{ br.recept.naam }}
+                </td>
+                <td>
+                    {{ br.aantal }}
+                </td>
+            </tr>
+            {% set count = count+1 %}
+        {%  endfor %}
+
+
+        {%  endfor %}
+    </table>
+
+{% endblock %}

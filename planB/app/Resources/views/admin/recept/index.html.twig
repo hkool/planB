@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Recepten overzicht</h1>
+
+    <table class="table table-striped ">
+        <thead >
+            <tr >
+                <th class="col-md-3">Id</th>
+                <th  class="col-md-3">Beschrijving</th>
+                <th class="col-md-3">Prijs per liter</th>
+                <th class="col-md-3">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recept in recepts %}
+            <tr>
+                <td class="col-md-3"><a href="{{ path('admin_showrecept', { 'id': recept.id }) }}">{{ recept.id }}</a></td>
+                <td class="col-md-3">{{ recept.naam }}</td>
+                <td class="col-md-3"> &euro; {{ recept.kostenPerLiter|number_format(2, ',', '.') }}</td>
+                <td class="col-md-3">
+                    <a href="{{ path('admin_deleterecept', { 'id': recept.id }) }}"><i class="fas fa-trash-alt"></i></a>
+
+                    <a href="{{ path('admin_editrecept', { 'id': recept.id }) }}"><i class="fas fa-pen"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

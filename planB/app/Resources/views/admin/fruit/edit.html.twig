@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-6 col-sm-12">
+        <h1>Fruit aanpassingen</h1>
+
+        {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Opslaan" />
+        {{ form_end(edit_form) }}
+
+        </div>
+    </div>
+
+{% endblock %}

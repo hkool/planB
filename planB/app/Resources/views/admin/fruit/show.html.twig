@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <h1>Fruit</h1>
+
+    <table class="table row">
+        <tbody>
+            <tr class="col-12">
+                <th>Id</th>
+                <td>{{ fruit.id }}</td>
+            </tr>
+            <tr>
+                <th>Naam</th>
+                <td>{{ fruit.naam }}</td>
+            </tr>
+            <tr>
+                <th>Seizoen</th>
+                <td>{{ fruit.seizoen }}</td>
+            </tr>
+            <tr>
+                <th>Afbeelding</th>
+                <td>{{ fruit.afbeelding }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="list-inline">
+        <li class="list-group-item-dark">
+            <a href="{{ path('admin_editfruit', { 'id': fruit.id }) }}">Wijzigen</a>
+        </li>
+        <li class="list-group-item-dark">
+            <a href="{{ path('admin_indexfruit') }}">Annuleren</a>
+        </li>
+
+    </ul>
+{% endblock %}
