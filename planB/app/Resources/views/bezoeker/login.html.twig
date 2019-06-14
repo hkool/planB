@@ -1,4 +1,7 @@
 {% extends 'base.html.twig' %}
+{% block navbar %}
+    {% include 'bezoeker/menu.html.twig' %}
+{% endblock %}
 {% block body %}
 
     {% if error %}
@@ -6,17 +9,20 @@
     {% endif %}
 
     <form action="{{ path("login") }}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+        <div class="row">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password"/>
+        <label class="col-12" for="username">Username:</label>
+        <input class="col-12 "  type="text" id="username" name="_username" value="{{ last_username }}"/>
+
+        <label class="col-12"   for="password">Password:</label>
+        <input class="col-12"  type="password" id="password" name="_password"/>
 
         {#protection against csrf with token#}
         {#<input type="hidden" name="_csrf_token"#}
                {#value="{{ csrf_token('authenticate') }}"#}
         {#>#}
-
-        <button type="submit">login</button>
+        <button class="col-12 align-content-stretch " type="submit">login</button>
+        </div>
     </form>
+
 {% endblock %}

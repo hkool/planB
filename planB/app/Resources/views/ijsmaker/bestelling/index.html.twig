@@ -1,0 +1,38 @@
+{% extends 'ijsmaker/index.html.twig' %}
+
+{% block body %}
+    <h1>Bestellingen overzicht</h1>
+    {% for bestelling in bestellingen %}
+    <table class="table table-striped ">
+        <thead >
+            <tr >
+                <th class="col-md-3">{{ bestelling.id }}</th>
+                <th  class="col-md-3">{{ bestelling.klantnaam }}</th>
+                <th class="col-md-3">{{ bestelling.telefoonnummer }}</th>
+                <th class="col-md-3">{{ bestelling.afhaaldatum }}</th>
+
+            </tr>
+        </thead>
+        <thead >
+        <tr >
+            <th class="col-md-3">Id</th>
+            <th  class="col-md-3">Recept</th>
+            <th class="col-md-3">Aantal</th>
+            <th class="col-md-3">Prijs</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for bestelregel in bestelling.bestelregels %}
+            <tr>
+                <td class="col-md-3"><a href="{{ path('ijsmaker_showrecept', { 'id': bestelregel.recept.id }) }}">{{ bestelregel.recept.id }}</a></td>
+                <td class="col-md-3">{{ bestelregel.recept.naam }}</td>
+                <td class="col-md-3"> &euro; {{ bestelregel.aantal  }}</td>
+                <td class="col-md-3"> &euro; {{ bestelregel.aantal * bestelregel.recept.kostenPerLiter  }}</td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+{% endblock %}

@@ -2,26 +2,41 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Bestelling;
 use AppBundle\Entity\Fruit;
 use AppBundle\Entity\Recept;
+use AppBundle\Form\AccountType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Fruit controller.
+ * Admin controller.
  *
  * @Route("admin")
  */
 class AdminController extends Controller
 {
     /**
+     * laat de homepage van de admin zien
+     *
+     * @Route("/", name="admin_index")
+     *
+     */
+    public function indexAction()
+    {
+        return $this->render('admin/index.html.twig', array(
+            'link' => 'home'
+        ));
+    }
+    //----------------------------begin crud fruit--------------------------------------------------------
+    /**
      * Laat een lijst zien van al het fruit
      *
      * @Route("/fruit/", name="admin_indexfruit")
-     * @Method("GET")
+     *
      */
-    public function indexAction()
+    public function indexfruitAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -29,14 +44,16 @@ class AdminController extends Controller
 
         return $this->render('admin/fruit/index.html.twig', array(
             'fruits' => $fruits,
+            'link'=> "fruit"
         ));
     }
+
 
     /**
      * Maakt een entity fruit aan
      *
      * @Route("/fruit/new", name="admin_newfruit")
-     * @Method({"GET", "POST"})
+     *
      */
     public function newAction(Request $request)
     {
@@ -55,6 +72,7 @@ class AdminController extends Controller
         return $this->render('admin/fruit/new.html.twig', array(
             'fruit' => $fruit,
             'form' => $form->createView(),
+            'link'=> "fruit"
         ));
     }
 
@@ -62,13 +80,14 @@ class AdminController extends Controller
      * Zoekt en toont een entity fruit
      *
      * @Route("/fruit/show/{id}", name="admin_showfruit")
-     * @Method("GET")
+     *
      */
     public function showFruitAction(Fruit $fruit)
     {
 
         return $this->render('admin/fruit/show.html.twig', array(
             'fruit' => $fruit,
+            'link'=> "fruit"
         ));
     }
 
@@ -76,7 +95,7 @@ class AdminController extends Controller
      * Toont een form om een fruit entity te updaten
      *
      * @Route("/fruit/edit/{id}", name="admin_editfruit")
-     * @Method({"GET", "POST"})
+     *
      */
     public function editAction(Request $request, Fruit $fruit)
     {
@@ -93,6 +112,7 @@ class AdminController extends Controller
         return $this->render('admin/fruit/edit.html.twig', array(
             'fruit' => $fruit,
             'edit_form' => $editForm->createView(),
+            'link'=> "fruit"
 
         ));
     }
@@ -101,7 +121,7 @@ class AdminController extends Controller
      * verwijdert een entity fruit
      *
      * @Route("/delete/fruit/{id}", name="admin_deletefruit")
-     * @Method("DELETE")
+     *
      */
     public function deleteAction(Request $request, $id)
     {
@@ -111,22 +131,23 @@ class AdminController extends Controller
             $em->flush();
         return $this->redirectToRoute('admin_indexfruit');
     }
-
+    //--------------------------eind crud fruit --------------------------------------------------------
+    //--------------------------begin crud recept -------------------------------------------------------
 
     /**
      * Lists all recept entities.
      *
      * @Route("/recepten", name="admin_indexrecept")
-     * @Method("GET")
+     *
      */
     public function indexReceptAction()
-    {
-        $em = $this->getDoctrine()->getManager();
+    { $em = $this->getDoctrine()->getManager();
 
         $recepts = $em->getRepository('AppBundle:Recept')->findAll();
 
         return $this->render('admin/recept/index.html.twig', array(
             'recepts' => $recepts,
+            'link'=> "recepten"
         ));
     }
 
@@ -134,7 +155,7 @@ class AdminController extends Controller
      * Creates a new recept entity.
      *
      * @Route("/recept/new", name="admin_newrecept")
-     * @Method({"GET", "POST"})
+     *
      */
     public function newReceptAction(Request $request)
     {
@@ -153,6 +174,7 @@ class AdminController extends Controller
         return $this->render('admin/recept/new.html.twig', array(
             'recept' => $recept,
             'form' => $form->createView(),
+            'link'=> "recepten"
         ));
     }
 
@@ -160,7 +182,7 @@ class AdminController extends Controller
      * Finds and displays a recept entity.
      *
      * @Route("/recept/show/{id}", name="admin_showrecept")
-     * @Method("GET")
+     *
      */
     public function showReceptAction(Recept $recept)
     {
@@ -168,7 +190,7 @@ class AdminController extends Controller
 
         return $this->render('admin/recept/show.html.twig', array(
             'recept' => $recept,
-
+            'link'=> "recepten"
         ));
     }
 
@@ -176,7 +198,7 @@ class AdminController extends Controller
      * Displays a form to edit an existing recept entity.
      *
      * @Route("/recept/edit/{id}", name="admin_editrecept")
-     * @Method({"GET", "POST"})
+     *
      */
     public function editReceptAction(Request $request, Recept $recept)
     {
@@ -192,6 +214,7 @@ class AdminController extends Controller
         return $this->render('admin/recept/edit.html.twig', array(
             'recept' => $recept,
             'edit_form' => $editForm->createView(),
+            'link'=> "recepten"
         ));
     }
 
@@ -199,11 +222,11 @@ class AdminController extends Controller
      * Deletes a recept entity.
      *
      * @Route("/recept/delete/{id}", name="admin_deleterecept")
-     * @Method("DELETE")
+     *
      */
     public function deleteReceptAction(Request $request, $id)
     {
-
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'U kunt deze opdracht niet laten uitvoeren omdat u de rechten niet heeft!');
             $em = $this->getDoctrine()->getManager();
             $recept = $em->getRepository(Recept::class)->find($id);
             $em->remove($recept);
@@ -211,7 +234,62 @@ class AdminController extends Controller
 
 
         return $this->redirectToRoute('admin_indexrecept');
+}   ///---------------------------eind crud recept ----------------------------------------------------
+/// //----------------------------begin bestelling ------------------------------------------------
+    /**
+     * Creates a new recept entity.
+     *
+     * @Route("/bestelling/new", name="admin_newbestelling")
+     *
+     */
+    public function newBestellingAction(Request $request)
+    {
+        $bestelling = new Bestelling();
+        $form = $this->createForm('AppBundle\Form\BestellingType', $bestelling);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($bestelling);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_showbestelling', array('id' => $bestelling->getId()));
+        }
+
+        return $this->render('admin/bestelling/new.html.twig', array(
+            'bestelling' => $bestelling,
+            'form' => $form->createView(),
+            'link'=> "bestellingen"
+        ));
     }
+    //-------------------------------- eind bestelling ----------------------------------------
+    // -------------------------------reset wachtwoord medewerkers -----------------------------
+    /**
+     * @Route("/resetwww/",name="resetWachtwoord")
+     */
+    function resetWachtwoordAction (Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->findOneBy(['username'=>'ijsmaker']);
+
+        $passwordEncoder = $this->get('security.password_encoder');
+        $plainPassword = "qwerty";
+
+        $newEncodedPassword = $passwordEncoder->encodePassword($user, $plainPassword);
+        $user->setPassword($newEncodedPassword);
+        try{
+                $em->persist($user);
+                $em->flush();
+
+                $this->addFlash('notice', 'Uw wachtwoord is gewijzigd, u kunt inloggen met het standaard wachtwoord en dat direct veranderen!');
+        }
+        catch(\Exception $e)
+        {
+            $this->addFlash('warning','Reset wachtwoord niet gelukt. Raadpleeg de beheerder.');
+        }
+        return $this->redirectToRoute('ijsmaker_index');
+    }
+
 
 
 }

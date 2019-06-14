@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,8 +46,19 @@ class Recept
      *
      */
     private $fruit;
+    /**
+     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="recept")
+     */
+    private $bestelregels;
 
-
+    /**
+     * Recept constructor.
+     * @param $bestelregels
+     */
+    public function __construct()
+    {
+        $this->bestelregels = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -130,6 +142,22 @@ class Recept
     public function setBereidingswijze($bereidingswijze)
     {
         $this->bereidingswijze = $bereidingswijze;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBestelregels()
+    {
+        return $this->bestelregels;
+    }
+
+    /**
+     * @param mixed $bestelregels
+     */
+    public function setBestelregels($bestelregels)
+    {
+        $this->bestelregels = $bestelregels;
     }
 }
 

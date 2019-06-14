@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReceptType extends AbstractType
+class BestelregelType extends AbstractType
 {
     /**
      *
@@ -15,13 +15,11 @@ class ReceptType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('naam')
-            ->add('kostenPerLiter')
-            ->add('fruit',EntityType::class,[
-                'class'=>'AppBundle:Fruit',
-                'choice_label'=>'naam' //veld uit tabel
-                ])
-            ->add('bereidingswijze');
+            ->add('recept', EntityType::class,
+                ['class=>AppBundle:Recept',
+                    'choice_label'=>'naam'])
+            ->add('aantal');
+
     }
     /**
      *
@@ -29,7 +27,7 @@ class ReceptType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Recept'
+            'data_class' => 'AppBundle\Entity\Bestelregel'
         ));
     }
 
@@ -38,7 +36,7 @@ class ReceptType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_recept';
+        return 'appbundle_bestelregel';
     }
 
 

@@ -1,14 +1,12 @@
-{% extends 'base.html.twig' %}
-{% block navbar %}
-    {% include 'bezoeker/menu.html.twig' %}
-{% endblock %}
+{% extends 'ijsmaker/index.html.twig' %}
+
 {% block body %}
     <h1>Recepten overzicht</h1>
 
     <table class="table table-striped ">
         <thead >
             <tr >
-
+                <th class="col-md-3">Id</th>
                 <th  class="col-md-3">Beschrijving</th>
                 <th class="col-md-3">Prijs per liter</th>
 
@@ -17,7 +15,7 @@
         <tbody>
         {% for recept in recepts %}
             <tr>
-
+                <td class="col-md-3"><a href="{{ path('ijsmaker_showrecept', { 'id': recept.id }) }}">{{ recept.id }}</a></td>
                 <td class="col-md-3">{{ recept.naam }}</td>
                 <td class="col-md-3"> &euro; {{ recept.kostenPerLiter|number_format(2, ',', '.') }}</td>
 

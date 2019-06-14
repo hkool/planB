@@ -25,7 +25,7 @@
                 </div>
             </li>
 
-            {#<!-- uitklapbaar submenu recepten /-->#}
+            <!-- uitklapbaar submenu recepten /-->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle {% if link == 'recepten' %}active{% endif %}" href="#" id="navbarDropdownRecept" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false" >
@@ -38,21 +38,21 @@
 
                 </div>
             </li>
-            <!-- uitklapbaar submenu bestellingen /-->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle {% if link == 'bestellingen' %}active{% endif %}" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false" >
-                    Bestellingen
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Overzicht</a>
-                    <a class="dropdown-item" href="#">Nieuw..</a>
-                    <a class="dropdown-item" href="#">Nieuwe klant</a>
+            {#<!-- uitklapbaar submenu bestellingen /-->#}
+            {#<li class="nav-item dropdown">#}
+                {#<a class="nav-link dropdown-toggle {% if link == 'bestellingen' %}active{% endif %}" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"#}
+                   {#aria-haspopup="true" aria-expanded="false" >#}
+                    {#Bestellingen#}
+                {#</a>#}
+                {#<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">#}
+                    {#<a class="dropdown-item" href="#">Overzicht</a>#}
+                    {#<a class="dropdown-item" href="#">Nieuw..</a>#}
+                    {#<a class="dropdown-item" href="#">Nieuwe klant</a>#}
 
-                </div>
-            </li>
+                {#</div>#}
+            {#</li>#}
             <li class="nav-item">
-                <a class="nav-link dropdown-toggle {% if link == 'bestellingen' %}active{% endif %}" href="#" id="navbarDropdownUser" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle {% if link == 'user' %}active{% endif %}" href="#" id="navbarDropdownUser" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false" >
                     Ingelogd als {{ app.user.username }}
                 </a>

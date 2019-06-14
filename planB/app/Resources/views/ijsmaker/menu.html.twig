@@ -10,20 +10,20 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item ">
-                <a class="nav-link {% if link == 'home' %}active{% endif %}" href="{{ path('admin_index') }}">Home </a>
+                <a class="nav-link {% if link == 'home' %}active{% endif %}" href="{{ path('ijsmaker_index') }}">Home </a>
             </li>
 
             {#<!-- uitklapbaar submenu fruit /-->#}
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle {% if link == 'fruit' %}active{% endif %}" href="#" id="navbarDropdownFruit" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false" >
-                    Fruit
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownFruit">
-                    <a class="dropdown-item" href="{{ path('admin_indexfruit') }}">Overzicht</a>
-                    <a class="dropdown-item" href="{{ path('admin_newfruit') }}" >Nieuw..</a>
-                </div>
-            </li>
+            {#<li class="nav-item dropdown">#}
+                {#<a class="nav-link dropdown-toggle {% if link == 'fruit' %}active{% endif %}" href="#" id="navbarDropdownFruit" data-toggle="dropdown"#}
+                   {#aria-haspopup="true" aria-expanded="false" >#}
+                    {#Fruit#}
+                {#</a>#}
+                {#<div class="dropdown-menu" aria-labelledby="navbarDropdownFruit">#}
+                    {#<a class="dropdown-item" href="{{ path('admin_indexfruit') }}">Overzicht</a>#}
+                    {#<a class="dropdown-item" href="{{ path('admin_newfruit') }}" >Nieuw..</a>#}
+                {#</div>#}
+            {#</li>#}
 
             <!-- uitklapbaar submenu recepten /-->
             <li class="nav-item dropdown">
@@ -33,24 +33,24 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownRecept">
-                    <a class="dropdown-item" href="{{ path('admin_indexrecept') }}">Overzicht</a>
-                    <a class="dropdown-item" href="{{ path('admin_newrecept') }}" >Nieuw..</a>
+                    <a class="dropdown-item" href="{{ path('ijsmaker_indexrecept') }}">Overzicht</a>
+                    {#<a class="dropdown-item" href="{{ path('admin_newrecept') }}" >Nieuw..</a>#}
 
                 </div>
             </li>
-            {#<!-- uitklapbaar submenu bestellingen /-->#}
-            {#<li class="nav-item dropdown">#}
-                {#<a class="nav-link dropdown-toggle {% if link == 'bestellingen' %}active{% endif %}" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"#}
-                   {#aria-haspopup="true" aria-expanded="false" >#}
-                    {#Bestellingen#}
-                {#</a>#}
-                {#<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">#}
-                    {#<a class="dropdown-item" href="#">Overzicht</a>#}
+            <!-- uitklapbaar submenu bestellingen /-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {% if link == 'bestellingen' %}active{% endif %}" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" >
+                    Bestellingen
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ path('ijsmaker_overzichtbestellingen') }}">Overzicht</a>
                     {#<a class="dropdown-item" href="#">Nieuw..</a>#}
                     {#<a class="dropdown-item" href="#">Nieuwe klant</a>#}
 
-                {#</div>#}
-            {#</li>#}
+                </div>
+            </li>
             <li class="nav-item">
                 <a class="nav-link dropdown-toggle {% if link == 'user' %}active{% endif %}" href="#" id="navbarDropdownUser" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false" >
@@ -58,7 +58,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
                     {% if is_granted('ROLE_IJSMAKER') %}
-                        <a class="dropdown-item" href="{{ path('resetWachtwoord') }}" >Wachtwoord wijzigen</a>
+                        <a class="dropdown-item" href="{{ path('wijzigWachtwoord') }}" >Wachtwoord wijzigen</a>
                     {% endif %}
                         <a class="dropdown-item" href="{{ path('logout') }}">Uitloggen</a>
                 </div>
