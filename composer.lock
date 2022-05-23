@@ -2407,12 +2407,7 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.4.35",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/symfony.git",
-                "reference": "2adc85d49cbe14e346068fa7e9c2e1f08ab31de6"
-            },
+
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/symfony/zipball/2adc85d49cbe14e346068fa7e9c2e1f08ab31de6",
@@ -2424,6 +2419,7 @@
                     "url": "https://github.com/symfony/symfony.git",
                     "reference": "ba0e346e3ad11de4a307fe4fa2452a3656dcc17b"
                 },
+
                 "shasum": ""
             },
             "require": {
@@ -2583,7 +2579,6 @@
                 }
             ],
             "time": "2021-05-19T12:07:19+00:00"
-
         },
         {
             "name": "twig/twig",
@@ -2808,4 +2803,5 @@
     },
 
     "plugin-api-version": "2.2.0"
+
 }
